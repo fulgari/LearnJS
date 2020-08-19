@@ -27,11 +27,11 @@ var b = {
 var c = b.detail;
 b.a = a;
 var e = b.bibi(); // e = function() {console.log(this.name);}   `this` will bind dynamicly
-a();
-c();
-b.a();
-d(b.detail);
-e();
+a(); // Red
+c(); // b.detail() : Red
+b.a(); // a() : Red **WRONG**: 这里的a作为对象的一个方法去直接调用，是指向b对象的。
+d(b.detail); // b.detail() : Red
+e(); // b.bibi()() : Red
 
 /**
  * output:

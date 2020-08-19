@@ -1,0 +1,25 @@
+<!-- 实现双向绑定 -->
+
+<html>
+  <body>
+    <input id="tobind" type="text">
+    <div id="toshow"></div>
+  </body>
+</html>
+
+<script>
+  let o = document.getElementById("tobind");
+  let val = '';
+  Object.defineProperty(this, "msg", {
+    get: ()=>val,
+    set: (newVal)=>{
+      val = newVal;
+      document.getElementById('toshow').innerText = val;
+    }
+  })
+  o.addEventListener("input", ()=>{
+    msg = o.value;
+  });
+
+
+</script>
