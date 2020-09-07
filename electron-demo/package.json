@@ -1,0 +1,11 @@
+{
+  "name": "electron-demo",
+  "version": "1.0.0",
+  "description": "app for french words memorization",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Zijun Pan",
+  "license": "MIT"
+}
