@@ -21,10 +21,10 @@
         height: 500px;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); /*absolute居中写法*/
+        transform: translate(-50%, -50%);
         align-items: center;
         justify-content: space-evenly;
-        background-image: radial-gradient( circle 993px at 0.5% 50.5%,  rgba(137,171,245,0.37) 0%, rgba(245,247,252,1) 100.2% ); /*from gradienthut.com*/
+        background-image: radial-gradient( circle 993px at 0.5% 50.5%,  rgba(137,171,245,0.37) 0%, rgba(245,247,252,1) 100.2% );/*from gradienthut.com*/
     }
 
     .card-wrap {
@@ -42,6 +42,7 @@
         border-radius: 10px;
         text-align: center;
         line-height: 150px;
+        box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .18);
         background-image: linear-gradient( 109.6deg,  rgba(121,203,202,1) 11.2%, rgba(119,161,211,1) 91.1% );
         transition: all .3s ease-in-out;
         backface-visibility: hidden; /*能隐藏3d元素的背面*/
@@ -61,10 +62,11 @@
         border-radius: 10px;
         text-align: center;
         line-height: 150px;
+        box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .18);
         background-image: radial-gradient( circle 944px at 6.9% 46.3%,  rgba(254,192,193,1) 0%, rgba(254,192,193,1) 0%, rgba(0,67,105,1) 100.2% );
         transition: all .3s ease-in-out;
         transform: rotatey(-180deg); /*预设初始度数*/
-        opacity: 0; /*一开始不应该看得见背面*/
+        opacity: 0;/*一开始不应该看得见背面*/
     }
 
     .card-wrap:hover .card-back {
