@@ -3,6 +3,7 @@
  * 2.普通函数：函数完整的调用方法是使用call方法，包括test.call(context, name)和obj.greet.call(context,name)，
  *   这里的context就是函数调用时的上下文（就是我平时所说的**直接调用**该普通函数的那个对象），也就是this，只不过这个this是可以通过call方法来修改的；
  *   构造函数稍微特殊一点，它的this直接指向new之后返回的对象；window.setTimeout()和window.setInterval()默认的是this是window对象。
+ * # 对setTimeout等系统函数，里面的this都指向window
  * 3.匿名普通函数：因为是匿名函数，它的调用并没有绑定到任何一个上下文中（没有人能够**直接调用**匿名函数，除了window），因此它的this都指向window对象，严格模式下为undefined。
  */
 

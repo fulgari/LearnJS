@@ -1,1 +1,7 @@
-document.write("hello webpack");
+// document.write("hello webpack");
+
+import $ from 'jquery';
+
+$('#title').click(()=>{
+  $('body').css('background')
+})
