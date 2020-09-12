@@ -29,7 +29,8 @@
 
     .card-wrap {
         position: relative;
-        display: block;
+        font-family: Helvetica;
+        font-size: 1.2rem;
         perspective: 300px; /*改变视角，能够让rotatey显示得更立体*/
     }
     .card {
@@ -48,7 +49,7 @@
         backface-visibility: hidden; /*能隐藏3d元素的背面*/
     }
 
-    .card-wrap:hover .card{
+    .card-wrap:hover .card{ /*注意这里的新用法，父类的伪类+子类*/
         transform: rotatey(180deg);
     }
 
