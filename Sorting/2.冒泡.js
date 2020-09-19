@@ -11,9 +11,9 @@ let swap = (arr, i, j) => {
 // 三难兄难弟之一，选泡插（最坏、平均全为n^2，最好n^2,n,n）
 let bubbleSort = (arr) => {
   for(let i=0; i<arr.length; i++) {
-    for(let j=i; j<arr.length; j++) {
-      if(arr[i]>arr[j]) {
-        swap(arr, i, j);
+    for(let j=0; j<arr.length-i-1; j++) {
+      if(arr[j+1]<arr[j]) {
+        swap(arr, j, j+1);
       }
     }
   }

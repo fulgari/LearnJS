@@ -63,7 +63,7 @@ let insertSort = (arr) => {
  */
 let ishellSort = (arr) => {
   let gap = 1, cur;
-  while(gap<=arr/2) {
+  while(gap<=arr.length/2) {
     gap = gap*2 + 1;
   }
   for(gap; gap>0; gap = Math.floor(gap/2)){
@@ -98,9 +98,86 @@ let quickSort = (arr) => {
   return quickSort(left).concat(pivot, quickSort(right));
 }
 
+function select(arr) {
+  let index
+  for(let i=0; i<arr.length; i++) {
+    index = i
+    for(let j=i+1; j<arr.length; j++) {
+      if(arr[j]<arr[i]) {
+        index = j
+      }
+    }
+    swap(arr, index, i)
+  }
+  return arr
+}
 
-console.log(selectSort(Array.prototype.slice.call(arr)));
-console.log(bubbleSort(Array.prototype.slice.call(arr)));
-console.log(insertSort(Array.prototype.slice.call(arr)));
-console.log(ishellSort(Array.prototype.slice.call(arr)));
-console.log(quickSort(Array.prototype.slice.call(arr)));
+function bubble(arr) {
+  for(let i=0; i<arr.length-1; i++) {
+    for(let j=i+1; j<arr.length; j++) {
+      if(arr[j]<arr[i]) {
+        swap(arr, j, i)
+      }
+    }
+  }
+  return arr
+}
+
+function insert(arr) {
+  for(let i=0; i<arr.length; i++) {
+    let cur = arr[i];
+    for(let j=0; j<i; j++) {
+      if(arr[j] > cur && j==0) {
+        arr.splice(i, 1)
+        arr.splice(0, 0, cur)
+      } else if(arr[j]<cur && arr[j+1] >cur && j<i-1) {
+        arr.splice(i, 1)
+        arr.splice(j+1, 0, cur)
+      }
+    }
+  }
+  return arr
+}
+
+function ishell(arr) {
+  let gap = 1, len = arr.length, cur
+  while(gap<=len/3) {
+    gap = gap * 3 + 1
+  }
+  for(gap; gap>0; gap=Math.floor(gap/3)) {
+    
+    for(let i=gap; i<len; i++) {
+      cur = arr[i]
+      for(var j=i-gap; j>=0 && arr[j]>cur; j-=gap) {
+        arr[j+gap] = arr[j]
+      }
+      arr[j+gap] = cur
+    }
+  }
+  return arr
+}
+
+function quick(arr) {
+  if(arr.length<=1) {
+    return arr
+  }
+  let left=[], right=[]
+  let pivotIndex = Math.floor(arr.length/2)
+  let pivot = arr[pivotIndex]
+  for(let i=0; i<arr.length; i++) {
+    if(i==pivotIndex) {
+      continue
+    }
+    if(arr[i]>pivot) {
+      right.push(arr[i])
+    } else {
+      left.push(arr[i])
+    }
+  }
+  return quick(left).concat(pivot, quick(right))
+}
+console.log(select(Array.prototype.slice.call(arr)));
+console.log(bubble(Array.prototype.slice.call(arr)));
+console.log(insert(Array.prototype.slice.call(arr)));
+console.log(ishell(Array.prototype.slice.call(arr)));
+console.log(quick(Array.prototype.slice.call(arr)));

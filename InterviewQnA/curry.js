@@ -16,9 +16,11 @@ function sumCurry() {
   return _addFn;
 }
 
-console.log(sumCurry(1)(2)(3)(4,3));
+console.log(sumCurry2(1)(2)(3)(4,3).toString());
 
-
+/**
+* 传入一个func
+*/
 function curry(fn) {
   var _args = [];
 
