@@ -7,7 +7,8 @@
 4. mousedown：当鼠标按下
 5. mousemove：当鼠标在元素上移动时，通常和mousedown/mouseup结合用来做绘图画板的功能
 6. mouseup：当鼠标放出
-7. click
+7. click 点击完的时候
+8. wheel 滚动的时候
 
 ### drag
 - draggable：是枚举属性（true|false|auto），~~不是boolean~~，组件能否被拖动（拖放API）。默认情形只有对选中文本、图片、链接可以拖动，而对其他元素必须按照拖动机制的顺序设置ondragstart事件才能工作。

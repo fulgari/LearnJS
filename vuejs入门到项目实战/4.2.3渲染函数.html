@@ -1,0 +1,151 @@
+
+<div class="" id="app">
+    <fly-table :fields="fields" :goods="goods">
+        <span slot="title">Fly Table Component</span>
+    </fly-table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script type="text/javascript">
+    Vue.component('fly-table', {
+        props: {
+            fields: {
+                type: Array,
+                default() {
+                    return []
+                }
+            },
+            goods: {
+                type: Array,
+                default() {
+                    return []
+                }
+            }
+        },
+        methods: {
+            reverse() {
+                this.goods.reverse()
+            }
+        },
+        //使用render函数渲染DOM
+        // render() 三个参数，HTML标签字符串/组件选项对象/节点解析函数（String|Object|Function），定义节点特性的对象（Object），子节点们（Array|String）
+        render(createElement) {
+            return createElement('div', {
+                slot: 'fly-table'
+            }, [
+                createElement('h2', this.$slots.title),  // $slots插槽们，注意是复数。
+                createElement('button', {
+                    class: ['btn', 'btn-text'],
+                    attrs: {
+                        disabled: false,
+                        title: 'click to reverse'
+                    },
+                    domProps: {
+                        innerText: 'Reverse'
+                    },
+                    on: {
+                        click: ()=>{
+                            this.goods.reverse()
+                        }
+                    },
+                    directives: [],
+                    key: 'btnReverse',
+                    ref: 'btnReverse'
+                }),
+                createElement('table', {
+                    style: {
+                        width: '400px',
+                        textAlign: 'left',
+                        lineHeight: '42px',
+                        border: '1px solid #eee',
+                        userSelect: 'none'
+                    }
+                }, [
+                    createElement('tr', [this.fields.map(field => createElement('th', field.prop))]),
+                    this.goods.map(item=>createElement('tr', {
+                        style: {
+                            color: item.isMarked ? '#ea4335' : ''
+                        }
+                    }, this.fields.map(field => createElement('td', {
+                        style: {
+                            borderTop: '1px solid #eee'
+                        }
+                    }, [
+                        //三目操作符用于分情况创建span子节点还是button子节点
+                        field.prop !== 'operate'
+                            ? createElement('span', item[field.prop])
+                            : createElement('button', {
+                                class: ['btn', 'btn-text'],
+                                domProps: {
+                                    innerHTML: `<span>${item.isMarked ? 'cancel' : 'mark'}</span>`
+                                },
+                                on: {
+                                    click: ()=>{
+                                        item.isMarked = !item.isMarked
+                                    }
+                                }
+                            })
+                    ]))))
+                ])
+            ])
+        }
+    })
+
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                fields: [
+                    {
+                        label: 'name',
+                        prop: 'name'
+                    },
+
+                    {
+                        label: 'qty',
+                        prop: 'quantity'
+                    },
+                    {
+                        label: 'price',
+                        prop: 'price'
+                    },
+                    {
+                        label: '',
+                        prop: 'operate'
+                    },
+                ],
+                goods: [
+                    {   
+                        name: 'Apple',
+                        quantity: 200,
+                        price: 6.8,
+                        isMarked: false
+                    },
+                    {
+                        name: '荣耀v20',
+                        quantity: 700,
+                        price: 6.8,
+                        isMarked: false
+                    }
+                ]
+            }
+        }
+    })
+</script>
+    
+<style>
+    .btn {
+        outline: none;
+        border: none;
+        cursor: pointer;
+        padding: 5PX 12PX;
+    }
+    .btn-text {
+        color: #409eff;
+        background-color: transparent;
+    }
+    .btn-text:hover {
+        color: #66b1ff;
+    }
+
+</style>
+

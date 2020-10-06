@@ -9,11 +9,14 @@
 1. 把儿子的margin转换成父亲的padding 注意盒子总高度变化问题
 2. 给父亲增加一个属性 overflow:hidden;    //触发了BFC
 
-### 触发BFC的方式
-1. body 根元素
-2. 浮动元素：float 除 none 以外的值
-3. 绝对定位元素：position (absolute、fixed)
-4. display 为 inline-block、table-cells、flex
-5. overflow 除了 visible 以外的值 (hidden、auto、scroll)
+### 触发BFC有哪些方式？
+（1）根元素HTML
+（2）float不为none
+（3）display为inline-block或table-cell
+（4）overflow不为visible
+（5）position不为static
+（6）flex-boxes
+
+概括来说就是**脱离了文档流**的元素
 
 只要为根、浮、绝、内、overflow这些之一，都可以在它们自己造出来的BFC内翻云覆雨了。
