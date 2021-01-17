@@ -1,0 +1,47 @@
+<html>
+    <form action="" id="target">
+        <select name="age">
+            <option value="aaa">aaa</option>
+            <option value="bbb" selected>bbb</option>
+        </select>
+        <input type="hidden" value="head"> Head
+        <input type="password" value="body"> Body
+        <input type="text" value="foot"> Foot
+        <input type="checkbox" checked value="mail"> Mail
+        <button type="submit">OK</button>
+    </form>
+</html>
+
+<script>
+/**
+ * @param {number} form 
+ */
+function serilizer(form) {
+    form = document.getElementById(form)
+    var arr = {}
+    for(let i=0; i<form.elements.length; i++) {
+        let ele = form.elements[i]
+        switch(ele.type) {
+            case undefined:
+            case 'button':
+            case 'file':
+            case 'reset':
+            case 'submit':
+                break
+            case 'checkbox':
+            case 'radio':
+                if(!ele.checked){
+                    break
+                }
+            default:
+                if(arr[ele.name]) {
+                    arr[ele.name] = arr[ele.name] + "," + ele.value
+                } else {
+                    arr[ele.name] = ele.name
+                }
+        }
+    }
+    return arr
+}
+console.log(serilizer('target'))
+</script>

@@ -1,11 +1,17 @@
 {
   "name": "electron-demo",
-  "version": "1.0.0",
-  "description": "app for french words memorization",
+  "version": "0.1.0",
+  "description": "My Electron App",
   "main": "main.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
   },
-  "author": "Zijun Pan",
-  "license": "MIT"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^11.1.0"
+  }
 }

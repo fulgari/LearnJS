@@ -1,0 +1,118 @@
+<div id="app">
+    
+    <h1>CSS 轮廓（outline）</h1>    
+
+    <p><mark>轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。</mark></p>
+
+    <p>轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。</p>
+
+    <p>轮廓（outline）实例</p>
+    <p>在元素周围画线</p>
+    <p>本例演示使用outline属性在元素周围画一条线。</p>
+
+    <p>设置轮廓的样式</p>
+    <p>本例演示如何设置轮廓的样式。</p>
+
+    <p>设置轮廓的颜色</p>
+    <p>本例演示如何设置轮廓的颜色。</p>
+
+    <p>设置轮廓的宽度</p>
+    <p>本例演示如何设置轮廓的宽度。</p>
+
+    <h1>CSS3 弹性盒子(Flex Box)</h1>
+    <p>弹性盒子是 CSS3 的一种新的布局模式。</p>
+
+    <p>CSS3 弹性盒（ Flexible Box 或 flexbox），是<mark>一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。</mark></p>
+
+    <p>引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。</p>
+
+    
+    <h1>CSS 轮廓（outline）</h1>    
+
+    <p><mark>轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。</mark></p>
+
+    <p>轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。</p>
+
+    <p>轮廓（outline）实例</p>
+    <p>在元素周围画线</p>
+    <p>本例演示使用outline属性在元素周围画一条线。</p>
+
+    <p>设置轮廓的样式</p>
+    <p>本例演示如何设置轮廓的样式。</p>
+
+    <p>设置轮廓的颜色</p>
+    <p>本例演示如何设置轮廓的颜色。</p>
+
+    <p>设置轮廓的宽度</p>
+    <p>本例演示如何设置轮廓的宽度。</p>
+
+    <h1>CSS3 弹性盒子(Flex Box)</h1>
+    <p>弹性盒子是 CSS3 的一种新的布局模式。</p>
+
+    <p>CSS3 弹性盒（ Flexible Box 或 flexbox），是<mark>一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。</mark></p>
+
+    <p>引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。</p>
+
+        
+    <h1>CSS 轮廓（outline）</h1>    
+
+    <p><mark>轮廓（outline）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。</mark></p>
+
+    <p>轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。</p>
+
+    <p>轮廓（outline）实例</p>
+    <p>在元素周围画线</p>
+    <p>本例演示使用outline属性在元素周围画一条线。</p>
+
+    <p>设置轮廓的样式</p>
+    <p>本例演示如何设置轮廓的样式。</p>
+
+    <p>设置轮廓的颜色</p>
+    <p>本例演示如何设置轮廓的颜色。</p>
+
+    <p>设置轮廓的宽度</p>
+    <p>本例演示如何设置轮廓的宽度。</p>
+
+    <h1>CSS3 弹性盒子(Flex Box)</h1>
+    <p>弹性盒子是 CSS3 的一种新的布局模式。</p>
+
+    <p>CSS3 弹性盒（ Flexible Box 或 flexbox），是<mark>一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。</mark></p>
+
+    <p>引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。</p>
+</div>
+
+<script>
+    let observer = new IntersectionObserver((entries, observer)=>{
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('animate')
+                observer.unobserve(entry.target)
+            }
+        })
+    })
+    document.querySelectorAll('mark').forEach(mark => {
+        observer.observe(mark)
+    })
+</script>
+
+<style>
+    mark{
+        background-color: transparent;
+        color: inherit;
+        background-image: linear-gradient(#73ffa0, #73ffa0);
+        background-repeat: no-repeat;
+        background-size: 0% 30%;
+        background-position: 0 100%;
+
+    }
+    mark.animate {
+        animation: 2s highlight ease-in-out forwards;
+    }
+    @keyframes highlight {
+        to {
+            background-size: 100% 30%;
+        }
+    }
+</style>
+
+

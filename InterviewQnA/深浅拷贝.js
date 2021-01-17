@@ -22,6 +22,11 @@ function deepCopy(obj) {
     return newObj
 }
 
+// 又有 JSON 深拷贝
+function dc(obj) {
+    return JSON.parse(JSON.stringify(obj))
+}
+
 let obj = [{"a":"yell", "x":{"y":"z"}}]
 let cp = shallowCopy(obj)
 let dcp = deepCopy(obj)
