@@ -1,0 +1,60 @@
+<div class="input">
+    <div class="ball" id="b1" draggable="true" name="1"></div>
+    <div class="ball" id="b2" draggable="true" name="2"></div>
+    <div class="ball" id="b3" draggable="true" name="3"></div>
+</div>
+<div class="zone"></div>
+
+<script>
+    let zone = document.querySelector('.zone')
+    let input = document.querySelector('.input')
+    let selected;
+    document.addEventListener('dragstart', (e)=>{
+        selected = e.target.getAttribute('name')
+        console.log(e.target.getAttribute('name'))
+    })
+    document.addEventListener('dragend', (e)=>{
+        e.target.style.border = 'none'
+    })
+    document.addEventListener('drag', (e)=>{
+        e.target.style.border = '3px dashed pink'
+    })
+    document.addEventListener('dragenter', (e)=>{
+        e.target.style.scale = 0.5
+    })
+    zone.addEventListener('dragover', e=>{
+        e.preventDefault()
+    })
+    zone.addEventListener('drop', e=>{
+        e.preventDefault()
+        e.target.appendChild(document.querySelector(`div[name='${selected}']`))
+    })
+</script>
+<style>
+    .ball {
+        float: left;
+        margin-right: 20px;
+        height: 30px;
+        width: 30px;
+        border-radius: 50px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    #b1 {
+        background-color: red;
+    }
+    #b2 {
+        background-color: blue;
+    }
+    #b3 {
+        background-color: yellow;
+    }
+
+    .zone {
+        clear: both;
+        margin-top: 40px;
+        height: 300px;
+        width: 300px;
+        background-color: bisque;
+    }
+</style>

@@ -1,0 +1,94 @@
+<!-- DayAndNight.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport," content="width:device-width; initial-scale:1.0;">
+</head>
+<body>
+	<div class="sun"></div>
+	<div class="moon"></div>
+	<div class="sea"></div>
+</body>
+
+</html>
+
+<!-- 自适应页面代码 -->
+<style>
+@media screen and (max-width: 200px) {
+	html {
+		font-size: 0.2px;
+	}
+}
+
+@media screen and (min-width: 400px) {
+	html {
+		font-size: 0.5px;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	html {
+		font-size: 1px;
+	}
+}
+
+body {
+	padding: 0rem;
+	margin: 0rem;	
+}
+.sun {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #ffeea2;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+
+	clip-path: inset(0 50% 0 0);
+}
+.sun::after {
+	content: '';
+	display:block;
+	background-color: orange;
+	height: 600rem;
+	width: 600rem;
+	border-radius: 50%;
+	z-index: 10;
+}
+.moon {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #040720;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.moon::after {
+	content: '';
+	width: 600rem;
+	height: 600rem;
+	border-radius: 50%;
+	box-shadow: 160rem 180rem 0 cyan;
+	transform: translate(-160rem, -180rem);
+}
+.sea {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 30%;
+	backdrop-filter: blur(100rem);
+	-webkit-backdrop-filter: blur(100rem);
+	z-index: 20;
+}
+</style>
+<script>
+window.addEventListener('mousemove', e=>{
+	let pcg = (100 - e.clientX/window.innerWidth * 100)
+	document.querySelector('.sun').style.clipPath = `inset(0 ${pcg}% 0 0`
+})
+</script>

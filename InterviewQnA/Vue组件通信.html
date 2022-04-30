@@ -1,0 +1,190 @@
+<!-- 1. 父子组件之间的通信：props/$emit -->
+
+<!-- 父组件 -->
+<template>
+    <div>
+        <span>{{desc}}</span>
+        <!-- 这里的 @getEmit 是一个自定义的事件，可以看作是类比 @click，触发条件为子组件 $emit -->
+        <child1 :msg="msg" @getEmit="getEmitParent"></child1>
+    </div>
+</template>
+
+<script>
+import child1 from "@/components/child1"
+export default {
+    components: {
+        child1
+    },
+    data() {
+        return {
+            msg: "我是父组件的 msg",
+            desc: "default"
+        }
+    },
+    methods: {
+        getEmitParent(data) {
+            this.desc = data
+        }
+    }
+}
+</script>
+
+
+<!-- 子组件1，child1 -->
+<template>
+    <div>
+        <span>我是父组件传来的{{msg}}</span>
+        <button @click="getEmitChild"></button>
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+        msg: String
+    },
+    data() {
+        return {
+            msg: "我是父组件的msg",
+            childMsg: "我是child的msg"
+        }
+    },
+    methods: {
+        getEmitChild(data) {
+            this.$emit("getEmit", this.childMsg) // 这里调用的 "getEmit" 是父组件中的方法
+        }
+    }
+}
+</script>
+
+
+<!-- 2. 兄弟组件通信： eventBus -->
+
+<!-- 有两种实现方式：
+    1. 使用 npm 中预定义好的 vue-bus，然后在 main.js 中引ss
+       通过组件中直接使用 this.$bus.on() 和 this.$bus.emit() 来做相应的处理
+    2. 创建一个 bus.js，用作中介来处理消息：
+       该文件内写入
+       import Vue from "vue";
+       export default new Vue();
+-->
+
+<!-- 子组件2，child2 -->
+<template>
+    <div>
+        <button @click="handleSendToChild3">{{ msg }}</button>
+    </div>
+</template>
+<script>
+    import Bus from "@/components/child2"
+    export default {
+        data() {
+            return {
+                msg: "点我向child3组件传参",
+                childMsg: "我是child1的msg"
+            }
+        },
+        methods: {
+            handleSendToChild3(data) {
+                Bus.$emit("getData", this.childMsg) // 当调用该方法时，会触发 Bus 总线中的对应事件，导致 child3 实例中的 msg 发生改变
+            }
+        }
+    }
+</script>
+
+
+<!-- 子组件3，child3 -->
+<template>
+    <div>
+        <span>{{msg}}</span>
+    </div>
+</template>
+<script>
+    import Bus from "@/components/child3"
+    export default {
+        data() {
+            return {
+                msg: ""
+            }
+        },
+        created() {
+            Bus.$on("getData", (data) => { // 绑定好自定义的 getData 事件到 Bus 总线上
+                this.msg = data
+            })
+        }
+    }
+</script>
+
+<!-- 3. $attrs / $listeners -->
+<!-- 父 => 子（中介） => 孙 -->
+
+<!-- 父组件1，child1 -->
+<template>
+    <div>
+        <span>{{desc}}</span>
+        <child1 :msg="msg" @getEmit="getEmitParent" v-on="$listener"></child1>
+    </div>
+</template>
+<script>
+import child1 from "@/components/child1"
+export default {
+    components: {
+        child1
+    },
+    data() {
+        return {
+            msg: "我是父组件的msg",
+            desc: ""
+        }
+    },
+    methods: {
+        getEmitParent(data) {
+            this.desc = data
+        }
+    }
+}
+</script>
+
+<!-- 子组件，child1 -->
+<template>
+    <div>
+        <child2 v-bind="$attrs"></child2>
+    </div>
+</template>
+<script>
+import child2 from "@/components/child2"
+export default {
+    // inheritAttrs: false,
+    components: {
+        child2
+    },
+    data() {
+        return {
+            msg: "我是父组件的msg",
+            childMsg: "我是child1的msg"
+        }
+    },
+    mounted() {
+        this.$emit("getEmit", this.childMsg)
+    }
+}
+</script>
+
+<!-- 子组件2，child2 -->
+<template>
+    <div>
+        <span>{{msg}} {{$attrs.msg}}</span> <!-- $attrs 即是父组件以绑定传参方式传来的值 -->
+    </div>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            msg: "该组件拿到父组件通过child1组件传递过来的值 =>"
+        }
+    }
+}
+</script>
+
+
+

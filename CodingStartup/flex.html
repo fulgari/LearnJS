@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="box">A</div>
+    <div class="box">B</div>
+    <div class="box">C</div>
+    <div class="box">D</div>
+    <div class="box">E</div>
+</div>
+
+<style>
+    .container {
+        display: flex; /*关键点掌握flex的两个概念，flex-container和flex-item*/
+        flex-direction: row; /*规定了flex的主轴main-axis方向，那么和它相交的就叫交叉轴cross-axis*/
+        flex-wrap: nowrap; /*规定了超出flex-container部分要不要分行起来，wrap表示可以分行*/
+        /*上两行合起来写成：flex-flow: row nowrap; */
+        width: 500px;
+        height: 500px;
+        justify-content: space-evenly; /*类比word里的两端对齐，区分 space-around, space-between, space-evenly*/
+        align-items: center; /* 相当于对每个flex-item应用align-self */
+        background-color: #ccc;
+    }
+    .box {
+        height: 40px;
+        width: 40px;
+        border: solid 2px #eee;
+        border-radius: 10px;
+        text-align: center; /* 实现水平居中 */
+        line-height: 40px; /* line-height == height 实现竖直居中 */
+        flex:0 1 30px; /* 实际上是flex-grow（主轴上flex-container比flex-item超出量拉伸分配的份额，如每个都是1那么就分1/5份）、
+        flex-shrink（不足量缩减的分配份额）、
+        flex-basis（在主轴上的初始长度，会覆盖掉width）*/
+    }
+    .box:nth-child(1) {
+        background-color: #f11;
+        /*align-self: flex-end; */ /* 对某个元素本身，在交叉轴上的排列 */
+    }
+    .box:nth-child(2) {
+        background-color: #e11;
+    }
+    .box:nth-child(3) {
+        background-color: #bb1;
+    }
+    .box:nth-child(4) {
+        background-color: #ca3;
+    }
+    .box:nth-child(5) {
+        background-color: #3232;
+    }
+</style>

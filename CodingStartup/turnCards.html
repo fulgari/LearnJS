@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="card-wrap">
+        <div class="card">COVER</div>
+        <div class="card-back">BACK</div>
+    </div>
+    <div class="card-wrap">
+        <div class="card">COVER</div>
+        <div class="card-back">BACK</div>
+    </div>    
+    <div class="card-wrap">
+        <div class="card">COVER</div>
+        <div class="card-back">BACK</div>
+    </div>    
+</div>
+
+<style>
+    .container {
+        position: absolute;
+        display: flex;
+        width: 500px;
+        height: 500px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        justify-content: space-evenly;
+        background-image: radial-gradient( circle 993px at 0.5% 50.5%,  rgba(137,171,245,0.37) 0%, rgba(245,247,252,1) 100.2% );/*from gradienthut.com*/
+    }
+
+    .card-wrap {
+        position: relative;
+        font-family: Helvetica;
+        font-size: 1.2rem;
+        perspective: 300px; /*改变视角，能够让rotatey显示得更立体*/
+    }
+    .card {
+        position: relative;
+        top:0;
+        left:0;
+        height: 150px;
+        width: 120px;
+        border: solid 2px #edf;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 150px;
+        box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .18);
+        background-image: linear-gradient( 109.6deg,  rgba(121,203,202,1) 11.2%, rgba(119,161,211,1) 91.1% );
+        transition: all .3s ease-in-out;
+        backface-visibility: hidden; /*能隐藏3d元素的背面*/
+    }
+
+    .card-wrap:hover .card{ /*注意这里的新用法，父类的伪类+子类*/
+        transform: rotatey(180deg);
+    }
+
+    .card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 150px;
+        width: 120px;
+        border: solid 2px #edf;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 150px;
+        box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .18);
+        background-image: radial-gradient( circle 944px at 6.9% 46.3%,  rgba(254,192,193,1) 0%, rgba(254,192,193,1) 0%, rgba(0,67,105,1) 100.2% );
+        transition: all .3s ease-in-out;
+        transform: rotatey(-180deg); /*预设初始度数*/
+        opacity: 0;/*一开始不应该看得见背面*/
+    }
+
+    .card-wrap:hover .card-back {
+        transform: rotatey(0); /*从反面转到正面，要和card方向同为逆时针，否则正反卡片会相撞*/
+        opacity: 1;
+    }
+
+
+</style>

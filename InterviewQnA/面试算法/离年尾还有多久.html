@@ -1,0 +1,22 @@
+<html>
+    <div id="display"></div>
+</html>
+<script>
+    function getRestTime() {
+        var now = new Date()
+        var year = now.getFullYear()
+        var endDate = new Date(year, 12, 31, 23, 59, 59)
+        var time = Math.floor((endDate.getTime()-now.getTime())/1000)
+        var day = Math.floor(time / (60*60*24))
+        time = time % (60*60*24)
+        var hour = Math.floor(time / (60*60))
+        time = time % (60*60)
+        var minute = Math.floor(time / 60)
+        time = time % 60
+        var second = Math.floor(time)
+        let el = document.getElementById("display")
+        el.textContent = "距离"+(year+1)+"年还有"+day+"天"+hour+"时"+minute+"分"+second+"秒"
+    }
+    getRestTime()
+    setInterval(getRestTime, 1000)
+</script>

@@ -1,0 +1,39 @@
+<html>
+  <head></head>
+  <body>
+    <div></div>
+    <p><span></span></p>
+  </body>
+  <div></div>
+  <google>
+  <!-- <br> -->
+</html>
+
+<script>
+// 我自己写的
+function getTags() {
+    let ele = document.documentElement
+    let res = []
+    let dfs = function(e) {
+        if(e.children.length>0) {
+            Array.from(e.children).forEach(child => {
+                dfs(child)
+            })
+        }
+        if(res.indexOf(e) === -1) {
+            res.push(e.tagName.toLowerCase())
+        }
+    }
+    dfs(ele)
+    return res
+}
+
+// 答案写的
+function getTags2() {
+    let list = document.getElementsByTagName('*')
+    let tags = Array.prototype.slice.call(list)
+    console.log(tags.map(item => item.tagName.toLowerCase()))
+}
+console.log(getTags())
+console.log(getTags2())
+</script>
